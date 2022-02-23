@@ -444,6 +444,7 @@ class SimpleT5:
         early_stopping: bool = True,
         skip_special_tokens: bool = True,
         clean_up_tokenization_spaces: bool = True,
+        use_gpu: bool = True,
     ):
         """
         generates prediction for T5/MT5 model
@@ -460,9 +461,18 @@ class SimpleT5:
             early_stopping (bool, optional): Defaults to True.
             skip_special_tokens (bool, optional): Defaults to True.
             clean_up_tokenization_spaces (bool, optional): Defaults to True.
+            use_gpu (bool, optional): if True, model uses gpu for training. Defaults to True.
         Returns:
             list[str]: returns predictions
         """
+        if use_gpu:
+            if torch.cuda.is_available():
+                self.device = torch.device("cuda")
+            else:
+                raise "exception ---> no gpu found. set use_gpu=False, to use CPU"
+        else:
+            self.device = torch.device("cpu")
+
         input_ids = self.tokenizer.encode(
             source_text, return_tensors="pt", add_special_tokens=True
         )
