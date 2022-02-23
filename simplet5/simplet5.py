@@ -2,6 +2,7 @@ import torch
 import numpy as np
 import pandas as pd
 from transformers import (
+    RobertaTokenizer,
     T5ForConditionalGeneration,
     MT5ForConditionalGeneration,
     ByT5Tokenizer,
@@ -311,6 +312,11 @@ class SimpleT5:
             self.model = T5ForConditionalGeneration.from_pretrained(
                 f"{model_name}", return_dict=True
             )
+        elif model_type == "codet5":
+            self.tokenizer = RobertaTokenizer.from_pretrained(f"{model_name}")
+            self.model = T5ForConditionalGeneration.from_pretrained(
+                f"{model_name}", return_dict=True
+        )
 
     def train(
         self,

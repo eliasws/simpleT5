@@ -1,8 +1,7 @@
 <img align="center" src="data/st5.png" alt="simpleT5">
 
 <p align="center">
-<b>Quickly train T5/mT5/byT5 models in just 3 lines of code
-</b>
+<b>Quickly train T5/mT5/byT5 and CodeT5 [NEW] models in just 3 lines of code</b>
 </p>
 <p align="center">
 <a href="https://badge.fury.io/py/simplet5"><img src="https://badge.fury.io/py/simplet5.svg" alt="PyPI version" height="18"></a>
