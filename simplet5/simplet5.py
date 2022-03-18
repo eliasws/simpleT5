@@ -419,6 +419,11 @@ class SimpleT5:
         elif model_type == "byt5":
             self.model = T5ForConditionalGeneration.from_pretrained(f"{model_dir}")
             self.tokenizer = ByT5Tokenizer.from_pretrained(f"{model_dir}")
+        elif model_type == "codet5":
+            self.tokenizer = RobertaTokenizer.from_pretrained(f"{model_dir}")
+            self.model = T5ForConditionalGeneration.from_pretrained(
+                f"{model_dir}", return_dict=True
+            )
 
         if use_gpu:
             if torch.cuda.is_available():
